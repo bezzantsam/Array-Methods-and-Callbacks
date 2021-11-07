@@ -66,6 +66,7 @@ function getWinners(array, getFinalsCB) {
     return getFinalsCB(array).map(x => x["Home Team Goals"] > x["Away Team Goals"] ? x["Home Team Name"] : x["Away Team Name"])
 }
 console.log(getWinners(fifaData, getFinals))
+//ternary operator....brilliant
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -78,12 +79,12 @@ Use the higher-order function getWinnersByYear to do the following:
 
 hint: the strings returned need to exactly match the string in step 4.
  */
-
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(data, getYearsCB, getWinnersCB, getFinalsCB){
+    const winners = getWinnersCB(data, getFinalsCB);
+    const years = getYearsCB(data, getFinals);
+    return winners.map((item, index) => `In ${years[index]}, ${item} won the world cup!`);
 }
-
-
+console.log("task 5", getWinnersByYear(fifaData, getYears, getWinners, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
@@ -95,9 +96,16 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
-}
+
+    function getAverageGoals(array) {
+        const averageHomeGoals = array.reduce(function(reducer, current){
+            return reducer + current['Home Team Goals'] + current['Away Team Goals'];
+        }, 0)
+        return (averageHomeGoals/array.length).toFixed(2);
+     }
+    //to fixed formats to fixed floating point notation(2 places)
+    console.log('task 6', getAverageGoals(fifaData));
+
 
 
 
@@ -110,7 +118,7 @@ Create a function called `getCountryWins` that takes the parameters `data` and `
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(/* code here */) {
+function getCountryWins(data, teamInitials) {
 
     /* code here */
 
