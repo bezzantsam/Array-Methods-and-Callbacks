@@ -32,13 +32,13 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 function getFinals(data) {
-       const finalsData = data.filter(function(x){
-        return  x.Stage === 'Final'
-        })
-        return getFinals;
-
-}
-console.log(getFinals(fifaData));
+       let final = data.filter(function(item){
+           return item.Stage === 'Final';
+       })
+       return final;
+    }
+  
+    console.log(getFinals(fifaData))
 
 
 
